@@ -142,8 +142,117 @@ void winrt::App1::implementation::MainWindow::RadioButton_Checked_2(winrt::Windo
 
 3. 메뉴 바</br>
 
+코드
+```
+//MainWindow.xaml
+ <Grid>
+     <Grid.RowDefinitions>
+         <RowDefinition Height="40"/>
+         <RowDefinition Height="60"/>
+     </Grid.RowDefinitions>
+     <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="Auto"/>
+     </Grid.ColumnDefinitions>
+     <Grid Grid.Row="0" Background="Gainsboro" CornerRadius="10">
+         <MenuBar>
+             <MenuBarItem Title="File">
+                 <MenuFlyoutItem Text="Save" Click="MenuFlyoutItem_Click" Icon="Save">
+                     <MenuFlyoutItem.KeyboardAccelerators>
+                         <KeyboardAccelerator Modifiers="Control" Key="S"/>
+                     </MenuFlyoutItem.KeyboardAccelerators>
+                 </MenuFlyoutItem>
+                 <MenuFlyoutItem Text="Open" Click="MenuFlyoutItem_Click_1" Icon="Page">
+                 <MenuFlyoutItem.KeyboardAccelerators>
+                     <KeyboardAccelerator Modifiers="Control" Key="O"/>
+                 </MenuFlyoutItem.KeyboardAccelerators>
+                 </MenuFlyoutItem>
+                 <MenuFlyoutSubItem Text="New" Icon="Add">
+                     <MenuFlyoutItem Text="Plain Text Document"/>
+                     <MenuFlyoutItem Text="Rich Text Document"/>
+                     <MenuFlyoutItem Text="Ohter Formats..."/>
+                 </MenuFlyoutSubItem>
+                 <MenuFlyoutSeparator/>
+
+                 <MenuFlyoutSeparator/>
+                 <MenuFlyoutItem Text="Exit" Click="MenuFlyoutItem_Click_3" Icon="Cancel">
+                     <MenuFlyoutItem.KeyboardAccelerators>
+                         <KeyboardAccelerator Modifiers="Control" Key="E"/>
+                     </MenuFlyoutItem.KeyboardAccelerators>
+                 </MenuFlyoutItem>
+             </MenuBarItem>
+
+             <MenuBarItem Title="View">
+                 <MenuFlyoutItem Text="Output" Click="MenuFlyoutItem_Click_4"/>
+                 <MenuFlyoutSeparator/>
+                 <RadioMenuFlyoutItem Text="Small Icons" GroupName="SizeGroup"
+                                          Click="RadioMenuFlyoutItem_Click"/>
+                 <RadioMenuFlyoutItem Text="Medium Icons" GroupName="SizeGroup"
+                      Click="RadioMenuFlyoutItem_Click_1"/>
+                 <RadioMenuFlyoutItem Text="Large Icons" GroupName="SizeGroup"
+                      Click="RadioMenuFlyoutItem_Click_2"/>
+             </MenuBarItem>
+
+
+         </MenuBar>
+     </Grid>
+     <Grid Grid.Row="1" Padding="15">
+         <TextBlock x:Name="TBlock">You Clicked :</TextBlock>
+     </Grid>
+ </Grid>
+```
+
+```
+//MainWindow.xaml.cpp 일부
+
+void winrt::App4::implementation::MainWindow::MenuFlyoutItem_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Save");
+}
+
+
+void winrt::App4::implementation::MainWindow::MenuFlyoutItem_Click_1(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Open");
+}
 
 
 
+void winrt::App4::implementation::MainWindow::MenuFlyoutItem_Click_3(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Exit");
+}
 
 
+void winrt::App4::implementation::MainWindow::MenuFlyoutItem_Click_4(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Output");
+}
+
+
+void winrt::App4::implementation::MainWindow::RadioMenuFlyoutItem_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Small icons");
+}
+
+
+void winrt::App4::implementation::MainWindow::RadioMenuFlyoutItem_Click_1(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Medium icons");
+}
+
+
+void winrt::App4::implementation::MainWindow::RadioMenuFlyoutItem_Click_2(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    TBlock().Text(L"You Clicked : Large icons");
+}
+
+```
+실행 화면</br>
+![Image description](./5.PNG)</br>
+![Image description](./6.PNG)</br>
+
+
+3. 8장 키워드 기반 메모장
+
+   코드
+   
