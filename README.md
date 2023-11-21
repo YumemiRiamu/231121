@@ -88,4 +88,62 @@ void winrt::App1::implementation::MainWindow::RadioButton_Checked_2(winrt::Windo
 ![Image description](./2.PNG)</br>
 ![Image description](./3.PNG)</br>
 
+2. 6-3 이미지 콜라주</br>
+코드
+```
+//MainWindow.xaml
+<Window
+    x:Class="App2.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Grid ColumnSpacing="5" RowSpacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="590"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="0">
+            <Image.Source>
+                <BitmapImage UriSource="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Assets/SampleMedia/LandscapeImage1.jpg?raw=ture"/>
+            </Image.Source>
+        </Image>
+        <Image Grid.Column="1" Grid.Row="0">
+            <Image.Source>
+                <BitmapImage UriSource="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Assets/SampleMedia/LandscapeImage2.jpg?raw=ture"/>
+            </Image.Source>
+        </Image>
+        <Image Grid.Column="0" Grid.Row="1">
+            <Image.Source>
+                <BitmapImage UriSource="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Assets/SampleMedia/LandscapeImage3.jpg?raw=ture"/>
+            </Image.Source>
+        </Image>
+        <Image Grid.Column="1" Grid.Row="1">
+            <Image.Source>
+                <BitmapImage UriSource="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Assets/SampleMedia/LandscapeImage4.jpg?raw=ture"/>
+            </Image.Source>
+        </Image>
+    </Grid>
+</Window>
+```
+실행화면
+![Image description](./4.PNG)</br>
+
+
+3. 메뉴 바</br>
+
+
+
+
+
 
