@@ -88,5 +88,4 @@ void winrt::App1::implementation::MainWindow::RadioButton_Checked_2(winrt::Windo
 ![Image description](./2.PNG)</br>
 ![Image description](./3.PNG)</br>
 
-2. 이미지 콜라주</br>
 
