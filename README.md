@@ -83,4 +83,10 @@ void winrt::App1::implementation::MainWindow::RadioButton_Checked_2(winrt::Windo
 </Window>
 ```
 
-실행화면
+실행화면</br>
+![Image description](./1.PNG)</br>
+![Image description](./2.PNG)</br>
+![Image description](./3.PNG)</br>
+
+2. 이미지 콜라주</br>
+
