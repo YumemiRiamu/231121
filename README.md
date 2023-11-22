@@ -140,7 +140,7 @@ void winrt::App1::implementation::MainWindow::RadioButton_Checked_2(winrt::Windo
 ![Image description](./4.PNG)</br>
 
 
-3. 메뉴 바</br>
+3. 7장 메뉴 바</br>
 
 코드
 ```
@@ -255,4 +255,95 @@ void winrt::App4::implementation::MainWindow::RadioMenuFlyoutItem_Click_2(winrt:
 3. 8장 키워드 기반 메모장
 
    코드
-   
+   ```
+   //mainwindow.xaml
+
+     <StackPanel Margin="20,20,20,20">
+        <TextBlock Text="키워드 기반 메모장"/>
+        <StackPanel Orientation="Horizontal" Margin="20,20,20,20">
+            <ComboBox SelectionChanged="ComboBox_SelectionChanged"
+                      Header="카테고리"
+                      PlaceholderText="카테고리를 선택하세요."
+                      Width="200">
+                <ComboBoxItem x:Name="schedule">일정</ComboBoxItem>
+                <ComboBoxItem x:Name="todo">할 일</ComboBoxItem>
+                <ComboBoxItem x:Name="goal">목표</ComboBoxItem>
+                <ComboBoxItem x:Name="important">중요한 일</ComboBoxItem>
+            </ComboBox>
+            <TextBox x:Name="nameInput"
+                     Header="메모"
+                     PlaceholderText="메모를 입력하세요"
+                     Width="300" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+            <Button Content="저장" Click="Button_Click" Margin="20,30,0,0"/>
+        </StackPanel>
+        <Pivot Title="메모">
+            <PivotItem Header="일정">
+                <TextBlock x:Name="scheduleL" Margin="20,20,20,20"/>
+            </PivotItem>
+            <PivotItem Header="할 일">
+                <TextBlock x:Name="todoL" Margin="20,20,20,20"/>
+            </PivotItem>
+            <PivotItem Header="목표">
+                <TextBlock x:Name="goalL" Margin="20,20,20,20"/>
+            </PivotItem>
+            <PivotItem Header="중요한 일">
+                <TextBlock x:Name="importantL" Margin="20,20,20,20"/>
+            </PivotItem>
+        </Pivot>
+    </StackPanel>
+   ```
+
+```
+//mainwindow.xaml.cpp
+
+#include <ctime>
+#pragma warning(disable : 4996)
+#include <string>
+   hstring current_time() {
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+    char buffer[128];
+    strftime(buffer, sizeof(buffer), "%m-%d-%Y %X", now);
+    return to_hstring(buffer);
+ }
+ string selectedL;
+hstring text1;
+hstring text2;
+hstring text3;
+hstring text4;
+
+void winrt::App5::implementation::MainWindow::ComboBox_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e)
+{
+    if (schedule().IsSelected()) selectedL = "scheduleL";
+    else if (todo().IsSelected()) selectedL = "todoL";
+    else if (goal().IsSelected()) selectedL = "goalL";
+    else selectedL = "importantL";
+}
+
+
+void winrt::App5::implementation::MainWindow::Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    if (selectedL == "scheduleL") {
+        text1 = text1 + (nameInput().Text() + L"\t" + current_time() + L"\n\n");
+        scheduleL().Text(text1);
+    }
+    else if (selectedL == "todoL") {
+        text2 = text2 + (nameInput().Text() + L"\t" + current_time() + L"\n\n");
+        todoL().Text(text2);
+    }
+    else if (selectedL == "goalL") {
+        text3 = text3 + (nameInput().Text() + L"\t" + current_time() + L"\n\n");
+        goalL().Text(text3);
+    }
+    else {
+        text4 = text4 + (nameInput().Text() + L"\t" + current_time() + L"\n\n");
+        importantL().Text(text4);
+    }
+
+}
+```
+
+실행 화면
+![Image description](./7.PNG)</br>
+![Image description](./8.PNG)</br>
+
