@@ -344,6 +344,68 @@ void winrt::App5::implementation::MainWindow::Button_Click(winrt::Windows::Found
 ```
 
 실행 화면
-![Image description](./7.PNG)</br>
-![Image description](./8.PNG)</br>
+![Image description](./7.png)</br>
+![Image description](./8.png)</br>
+
+5. 9장 웹브라우저
+
+코드
+
+```
+//mainwindow.xaml
+   <Grid RequestedTheme="Default">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="url_text" Grid.Row="0" Header="Enter url:"
+                 PlaceholderText="url" HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch" FontSize="24"
+                 Margin="5,5,5,5">
+            <TextBox.ContextFlyout>
+                <controls:MenuFlyout>
+                    <MenuFlyoutItem Text="paste" Icon="Paste" Click="MenuFlyoutItem_Click"></MenuFlyoutItem>
+                </controls:MenuFlyout>
+            </TextBox.ContextFlyout>
+        </TextBox>
+        <Button x:Name="get_button" Click="get_button_Click" Content="Get" Grid.Row="1" HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" FontSize="24" Margin="5,5,5,5"/>
+        <controls:WebView2 x:Name="MyWebView" Grid.Row="2"
+                   Source="https://www.google.com" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+    </Grid>
+```
+
+```
+//mainwindow.xaml.cpp
+void winrt::App7::implementation::MainWindow::MenuFlyoutItem_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    url_text().PasteFromClipboard();
+}
+
+
+void winrt::App7::implementation::MainWindow::get_button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    winrt::hstring sss = url_text().Text();
+    try {
+        if (sss.size() == 0) {
+            MessageBox(NULL, L"오류", L"url을 입력하시오", MB_OK);
+            return;
+        }
+        winrt::Windows::Foundation::Uri uri(url_text().Text());
+        MyWebView().Source(uri);
+    }
+    catch (winrt::hresult_error const& e) {
+        winrt::hstring err = e.message();
+        MessageBox(NULL, err.c_str(), L"에러", MB_OK);
+    }
+}
+```
+
+실행 화면
+![Image description](./9.png)</br>
+![Image description](./10.png)</br>
+![Image description](./11.png)</br>
+![Image description](./12.png)</br>
+
 
